@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "gpu",
+            "type": "shell",
+            "command": "docker build -t docker.pkg.github.com/glnext/glnext/glnext:gpu -f docker/gpu/Dockerfile ."
+        },
+        {
+            "label": "gpu-slim",
+            "type": "shell",
+            "command": "docker build -t docker.pkg.github.com/glnext/glnext/glnext:gpu-slim -f docker/gpu-slim/Dockerfile ."
+        },
+        {
+            "label": "swiftshader",
+            "type": "shell",
+            "command": "docker build -t docker.pkg.github.com/glnext/glnext/glnext:swiftshader -f docker/swiftshader/Dockerfile ."
+        },
+        {
+            "label": "swiftshader-slim",
+            "type": "shell",
+            "command": "docker build -t docker.pkg.github.com/glnext/glnext/glnext:swiftshader-slim -f docker/swiftshader-slim/Dockerfile ."
+        },
+        {
+            "dependsOn": [
+                "gpu",
+                "gpu-slim",
+                "swiftshader",
+                "swiftshader-slim"
+            ],
+            "dependsOrder": "parallel",
+            "label": "all",
+            "type": "shell",
+            "command": "echo Done!",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
